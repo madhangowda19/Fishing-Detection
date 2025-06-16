@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>PHISHING DETECTION</title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+        <style>
+            #Box{
+                padding: 25px;
+                background-color: white;
+                height: 65vh;
+            }
+            .row{
+                margin-top: 150px;
+            }
+            body{
+                background-color: aliceblue;
+            }
+
+            .button1{
+  appearance: button;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgb(160, 245, 174), #37ee65);
+  border: 0 solid #e5e7eb;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #482307;
+  column-gap: 1rem;
+  cursor: pointer;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  outline: 2px solid transparent;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  text-transform: none;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+  display: none;
+}
+
+.button2{
+  appearance: button;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgb(252, 162, 162), #ee3737);
+  border: 0 solid #e5e7eb;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #482307;
+  column-gap: 1rem;
+  cursor: pointer;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  outline: 2px solid transparent;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  text-transform: none;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: -6px 8px 10px rgba(81,41,10,0.1),0px 2px 2px rgba(81,41,10,0.2);
+  display: none;
+}
+
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/ML">PHISHING DETECTION</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/comparison">Comparison</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ML">ML</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ANN">ANN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="Box">
+                       <img src="data:image/jpeg;base64,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" style="width: 100%;height:330px">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="Box">
+                        <p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, explicabo enim unde earum similique tempora soluta, non voluptatum, quasi consectetur reiciendis harum commodi? Iure deleniti neque itaque, dolores quibusdam obcaecati?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus aliquid atque quos unde tenetur. Aut nobis animi tenetur odit, esse sequi id consequatur, placeat sed voluptatem iste, quod rem cum.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A eos eaque repellat consequatur quas magnam. Iste pariatur numquam nihil culpa, doloribus, fuga necessitatibus aperiam assumenda doloremque ea soluta quae laboriosam.
+                            
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        <script>
+        
+            let x = '{{xx}}';
+            let num = x*100;
+            if (0<=x && x<0.50){
+                num = 100-num;
+            }
+            let txtx = num.toString();
+            if(x<=1 && x>=0.50){
+                var label = "Website is "+txtx +"% safe to use...";
+                document.getElementById("prediction").innerHTML = label;
+                document.getElementById("button1").style.display="block";
+                
+            }
+            else if (0<=x && x<0.50){
+                var label = "Website is "+txtx +"% unsafe to use..."
+                document.getElementById("prediction").innerHTML = label ;
+                document.getElementById("button2").style.display="block";
+                
+            }
+        
+    </script>
+    </body>
+</html>
